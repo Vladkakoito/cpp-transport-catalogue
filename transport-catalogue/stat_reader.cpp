@@ -35,34 +35,34 @@ namespace tr_cat {
 
         void StatReader::WriteBusInfo(std::ostream& output, std::string_view name) {
 
-            std::optional<BusOutput> bus = catalog_.GetBusInfo(name);
+            std::optional<const TransportCatalogue::Bus*> bus = catalog_.GetBusInfo(name);
 
             if (!bus) {
                 output << "Bus "s << name << ": not found\n"s;
                 return;
             }
 
-            output << "Bus "s << bus->name << ": "s << bus->stops_count << " stops on route, "s << bus->unique_stops_count << " unique stops, "s;
-            output << std::setprecision(6) << static_cast<double>(bus->distance) << " route length, "s << bus->curvature << " curvature\n"s;
+            output << "Bus "s << (*bus)->name << ": "s << (*bus)->stops.size() << " stops on route, "s << (*bus)->unique_stops << " unique stops, "s;
+            output << std::setprecision(6) << static_cast<double>((*bus)->distance) << " route length, "s << (*bus)->curvature << " curvature\n"s;
         }
 
         void StatReader::WriteStopInfo(std::ostream& output, std::string_view name) {
 
-            std::optional<StopOutput> stop = catalog_.GetStopInfo(name);
+            std::optional<const TransportCatalogue::Stop*> stop = catalog_.GetStopInfo(name);
 
             if (!stop) {
                 output << "Stop "s << name << ": not found"s << std::endl;
                 return;
             }
 
-            if (stop->buses.empty()) {
+            if ((*stop)->buses.empty()) {
                 output << "Stop " << name << ": no buses"s << std::endl;
                 return;
             }
 
             output << "Stop "s << name << ": buses"s;
 
-            for (std::string_view bus : stop->buses) {
+            for (std::string_view bus : (*stop)->buses) {
                 output << " "s << bus;
             }
 

@@ -74,7 +74,7 @@ namespace tr_cat {
                     return;
                 }
 
-                bus.is_ring = line[0] == '-' ? true : false;
+                bus.is_ring = line[0] == '-' ? false : true;
 
                 size_t pos = std::min(bus.stops.back().size(), bus.stops.back().find_last_not_of(' '));
 

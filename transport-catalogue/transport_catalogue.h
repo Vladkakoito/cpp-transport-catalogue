@@ -19,43 +19,16 @@ namespace tr_cat {
 
         using namespace std::string_literals;
 
-        struct BusOutput {
-            std::string_view name;
-            int stops_count = 0;
-            int unique_stops_count = 0;
-            int distance = 0;
-            double curvature = 0;
-        };
-
-        struct StopOutput {
-            std::string_view name;
-            std::set<std::string_view> buses;
-        };
-
-
-
         class TransportCatalogue {
 
         public:
-
-            void AddStop (std::string& name, geo::Coordinates coords);
-
-            void AddBus (std::string_view name, std::vector<std::string>& stops, const bool is_ring);
-
-            void AddDistance(const std::string_view lhs, const std::string_view rhs, double distance);
-
-            std::optional<const BusOutput>  GetBusInfo (std::string_view name);
-
-            std::optional<const StopOutput> GetStopInfo (std::string_view name);
-
-            std::optional<std::set<std::string_view>> GetBusesFromStop (std::string_view name);
-
-
-        private:
             struct Stop;
             struct Bus {
                 std::string name;
                 std::vector<Stop*> stops;
+                int unique_stops;
+                int distance;
+                double curvature;
             };
 
             struct Stop {
@@ -63,6 +36,19 @@ namespace tr_cat {
                 geo::Coordinates coordinates;
                 std::set<std::string_view> buses;
             };
+
+            void AddStop (std::string& name, geo::Coordinates coords);
+
+            void AddBus (std::string_view name, std::vector<std::string>& stops, const bool is_ring);
+
+            void AddDistance(const std::string_view lhs, const std::string_view rhs, double distance);
+
+            std::optional<const Bus*>  GetBusInfo (std::string_view name);
+
+            std::optional<const Stop*> GetStopInfo (std::string_view name);
+
+
+        private:
 
             class DistanceHasher {
             public:
@@ -99,8 +85,6 @@ namespace tr_cat {
             double ComputeGeoRouteDistance (std::string_view name) const;
 
             int GetDistance(const Stop* lhs, const Stop* rhs) const;
-
-            int ComputeUniqueStopsCount (std::string_view name) const;
 
         };
     }//aggregations

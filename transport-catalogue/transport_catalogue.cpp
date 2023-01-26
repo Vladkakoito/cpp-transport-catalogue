@@ -9,23 +9,34 @@ namespace tr_cat {
         }
 
         void TransportCatalogue::AddBus (std::string_view name, std::vector<std::string>& stops, const bool is_ring) {
+
             buses_data_.push_back({static_cast<std::string>(name), {}});
 
+            //добавление к каждой остановке название этого автобуса
             for (auto stop : stops) {
                 stops_container_[stop]->buses.insert(buses_data_.back().name);
             }
             
             std::vector<Stop*> tmp_stops(stops.size());
 
+            //из названий в указатели на существующие остановки
             std::transform(stops.begin(), stops.end(), tmp_stops.begin(), [&] (std::string_view element) {
-                return FindStop(element);});
+                return stops_container_[element];});
 
+            //если остановок нет
             if (tmp_stops.empty()) {
                 buses_container_.insert({buses_data_.back().name, &(buses_data_.back())});
                 return;
             }
 
-            if (is_ring) {
+            //запись указателей на уникальные остановки для подсчета
+            std::unordered_set<Stop*>tmp_unique_stops;
+            std::for_each(tmp_stops.begin(), tmp_stops.end(), [&](Stop* element) {
+                    tmp_unique_stops.insert(element); });
+            buses_data_.back().unique_stops = tmp_unique_stops.size();
+
+            //если линейный маршрут, то добавление обратного направления
+            if (!is_ring) {
                 tmp_stops.reserve(tmp_stops.size()*2-1);
                 for (auto it = tmp_stops.end() - 2; it != tmp_stops.begin(); --it) {
                     tmp_stops.push_back(*it);
@@ -36,6 +47,9 @@ namespace tr_cat {
             buses_data_.back().stops = move(tmp_stops);
 
             buses_container_.insert({buses_data_.back().name, &(buses_data_.back())});
+
+            buses_data_.back().distance = ComputeRouteDistance(name);
+            buses_data_.back().curvature = buses_data_.back().distance / ComputeGeoRouteDistance(name);
         }
 
         void TransportCatalogue::AddDistance(const std::string_view lhs_name, const std::string_view rhs_name, double distance) {
@@ -46,49 +60,27 @@ namespace tr_cat {
             distances_[{lhs, rhs}] = distance;
         }
 
-        std::optional<const BusOutput> TransportCatalogue::GetBusInfo (std::string_view name) {
+        std::optional<const TransportCatalogue::Bus*> TransportCatalogue::GetBusInfo (std::string_view name) {
 
-            BusOutput bus_to_output;
             const Bus* bus = FindBus(name);
 
             if (!bus) {
                 return std::nullopt;
             }
 
-            bus_to_output.name = name;
-            bus_to_output.stops_count = bus->stops.size();
-            bus_to_output.unique_stops_count = ComputeUniqueStopsCount(name);
-            bus_to_output.distance = ComputeRouteDistance(name);
-            bus_to_output.curvature = bus_to_output.distance / ComputeGeoRouteDistance(name);
-
-            return bus_to_output;
+            return bus;
         }
 
-        std::optional<const StopOutput> TransportCatalogue::GetStopInfo (std::string_view name) {
+        std::optional<const TransportCatalogue::Stop*> TransportCatalogue::GetStopInfo (std::string_view name) {
 
-            StopOutput stop_to_output;
             const Stop* stop = FindStop(name);
 
             if (!stop) {
                 return std::nullopt;
             }
 
-            stop_to_output.name = name;
-            stop_to_output.buses = stop->buses;
-
-            return stop_to_output;
+            return stop;
         }
-
-
-        std::optional<std::set<std::string_view>> TransportCatalogue::GetBusesFromStop (std::string_view name) {
-            
-            const Stop* stop = FindStop(name);
-            if (!stop) {
-                return std::nullopt;
-            }
-            return stop->buses;
-        }
-
 
         TransportCatalogue::Stop* TransportCatalogue::FindStop (std::string_view name) const {
             if (!stops_container_.count(name)) {
@@ -139,17 +131,6 @@ namespace tr_cat {
                 distance += geo::ComputeDistance(stops[i-1]->coordinates, stops[i]->coordinates);
             }
             return distance;
-        }
-
-        int TransportCatalogue::ComputeUniqueStopsCount (std::string_view name) const {
-
-            std::set<std::string_view> stops;
-
-            for (const Stop* stop : FindBus(name)->stops) {
-                stops.insert(stop->name);
-            }
-
-            return static_cast<int>(stops.size());
         }
     }//aggregations
 }//tr_cat
