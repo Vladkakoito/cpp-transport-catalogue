@@ -2,18 +2,23 @@
 
 namespace tr_cat {
     namespace aggregations {
-
-        void TransportCatalogue::AddStop (std::string& name, geo::Coordinates coords) {
-            stops_data_.push_back({name, coords, {}});
+        
+        void TransportCatalogue::AddStop (std::string_view name, geo::Coordinates coords) {
+            stops_data_.push_back({move(static_cast<std::string>(name)), coords, {}});
             stops_container_[stops_data_.back().name] = &(stops_data_.back());
         }
 
-        void TransportCatalogue::AddBus (std::string_view name, std::vector<std::string>& stops, const bool is_ring) {
+        void TransportCatalogue::AddBus (std::string_view name, std::vector<std::string_view>& stops, const bool is_ring) {
 
+            auto it = std::lower_bound(buses_.begin(), buses_.end(), name);
+            if (it != buses_.end() && *it == name) {
+                return;
+            }
             buses_data_.push_back({static_cast<std::string>(name), {}});
+            buses_.insert(it, buses_data_.back().name);
 
-            //добавление к каждой остановке название этого автобуса
-            for (auto stop : stops) {
+            //добавление к каждой остановке названия этого автобуса
+            for (std::string_view stop : stops) {
                 stops_container_[stop]->buses.insert(buses_data_.back().name);
             }
             
@@ -33,7 +38,7 @@ namespace tr_cat {
             std::unordered_set<Stop*>tmp_unique_stops;
             std::for_each(tmp_stops.begin(), tmp_stops.end(), [&](Stop* element) {
                     tmp_unique_stops.insert(element); });
-            buses_data_.back().unique_stops = tmp_unique_stops.size();
+            buses_data_.back().unique_stops = static_cast<int>(tmp_unique_stops.size());
 
             //если линейный маршрут, то добавление обратного направления
             if (!is_ring) {
@@ -42,6 +47,8 @@ namespace tr_cat {
                     tmp_stops.push_back(*it);
                 }
                 tmp_stops.push_back(tmp_stops.front());
+            } else {
+                buses_data_.back().is_ring = true;
             }
 
             buses_data_.back().stops = move(tmp_stops);
@@ -57,10 +64,10 @@ namespace tr_cat {
             const Stop* lhs = FindStop(lhs_name);
             const Stop* rhs = FindStop(rhs_name);
 
-            distances_[{lhs, rhs}] = distance;
+            distances_[{lhs, rhs}] = static_cast<int>(distance);
         }
 
-        std::optional<const TransportCatalogue::Bus*> TransportCatalogue::GetBusInfo (std::string_view name) {
+        std::optional<const Bus*> TransportCatalogue::GetBusInfo (std::string_view name) const {
 
             const Bus* bus = FindBus(name);
 
@@ -71,25 +78,23 @@ namespace tr_cat {
             return bus;
         }
 
-        std::optional<const TransportCatalogue::Stop*> TransportCatalogue::GetStopInfo (std::string_view name) {
+        std::optional<const Stop*> TransportCatalogue::GetStopInfo (std::string_view name) const {
 
             const Stop* stop = FindStop(name);
-
             if (!stop) {
                 return std::nullopt;
             }
-
             return stop;
         }
 
-        TransportCatalogue::Stop* TransportCatalogue::FindStop (std::string_view name) const {
+        Stop* TransportCatalogue::FindStop (std::string_view name) const {
             if (!stops_container_.count(name)) {
                 return nullptr;
             }
             return stops_container_.at(name);
         }
 
-        TransportCatalogue::Bus* TransportCatalogue::FindBus (std:: string_view name) const {
+        Bus* TransportCatalogue::FindBus (std:: string_view name) const {
             if (!buses_container_.count(name)) {
                 return nullptr;
             }

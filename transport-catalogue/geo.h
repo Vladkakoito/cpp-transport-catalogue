@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cmath>
+inline const double EPSILON = 1e-6;
 
 namespace tr_cat {
     namespace geo {
@@ -9,7 +10,7 @@ namespace tr_cat {
             double lat;
             double lng;
             bool operator==(const Coordinates& other) const {
-                return lat == other.lat && lng == other.lng;
+                return std::abs(lat - other.lat) < EPSILON && std::abs(lng - other.lng) < EPSILON;
             }
             bool operator!=(const Coordinates& other) const {
                 return !(*this == other);
@@ -27,5 +28,7 @@ namespace tr_cat {
             return acos(sin(from.lat * dr) * sin(to.lat * dr)
                         + cos(from.lat * dr) * cos(to.lat * dr) * cos(abs(from.lng - to.lng) * dr)) * earth_rad;
         }
+
+        
     }//geo
 }//tr_cat

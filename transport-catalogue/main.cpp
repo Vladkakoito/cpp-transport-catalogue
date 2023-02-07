@@ -1,13 +1,18 @@
 #include "transport_catalogue.h"
+#include "request_handler.h"
+#include "json_reader.h"
 #include "input_reader.h"
-#include "stat_reader.h"
 #include "tests.h"
 
 #include <cassert>
 #include <fstream>
-
-using namespace std;
+#include <iostream>
 
 int main() {
-    tr_cat::tests::TestCatalog();
+    using namespace std;
+    using namespace tr_cat;
+    aggregations::TransportCatalogue catalog;
+    interface::JsonReader reader(catalog);
+    Process(reader);
+    //tests::Test();
 }

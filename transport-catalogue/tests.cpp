@@ -19,80 +19,123 @@ namespace tr_cat {
             }
         }// detail
 
+
+
         void TestOutput() {
+            std::ifstream inf {"s10_final_opentest_3.json"s};
+            std::ofstream outf {"test_output.json"s};
             aggregations::TransportCatalogue catalog;
-            std::vector<std::string> lines;
-
-            {
-                std::ifstream inf {"input.txt"s};
-                std::ofstream outf {"output.txt"s};
-
-                
-                ReadBase(catalog, inf);
-                ReadAndWriteStat(catalog, inf, outf);
-            }
-
-            {
-                std::ifstream inf {"output.txt"s};
-
-                for (std::string line; getline(inf, line); ) {
-                    lines.push_back(line);
-                }
-            }
-
-            {
-                std::ifstream inf {"output_need.txt"s};
-                for (size_t i = 0; i < lines.size(); ++i) {
-                    std::string line1;
-                    getline(inf, line1);
-                    ASSERT_HINT(lines[i] == line1,"\noutput: " + lines[i] + "\n"s + "need:   "s + line1 + "\n"s + "LINE: "s + std::to_string(i) + "\n"s);
-                }
-                std::cerr << "OUTPUT OK"s << std::endl << std::endl;
-            }
+            interface::JsonReader reader(catalog, inf, outf);
+            reader.ReadDocument();
+            reader.ParseDocument();
+            reader.AddStops();
+            reader.AddDistances();
+            reader.AddBuses();
+            reader.GetAnswers();
+            reader.PrintAnswers();
+            inf.close();
+            outf.close();
+            ASSERT_HINT(reader.TestingFilesOutput("test_output.json"s, "s10_final_opentest_3_answer.json"), "Output files not equal"s);
         }
 
-        void TestSpeed() {
-            std::ifstream inf {"input.txt"s};
-            std::ofstream outf {"output.txt"s};
-
+        void TestRenderSpeed() {
+            LOG_DURATION("TOTAL"s);
             aggregations::TransportCatalogue catalog;
+            std::ifstream inf {"s10_final_opentest_3.json"s};
+            std::ofstream outf {"test_output.svg"s};
+            interface::JsonReader reader(catalog, inf, outf);
             {
-                aggregations::InputReader reader(catalog, inf);
                 LOG_DURATION("BASE FILLING"s);
 
                 {
-                    LOG_DURATION("    PARSING       "s);
-                    reader.ParseBase();
+                    LOG_DURATION("    READING         "s);
+                    reader.ReadDocument();
+                }
+
+                {
+                    LOG_DURATION("    PARSING         "s);
+                    reader.ParseDocument();
                 }
                 
                 {
-                    LOG_DURATION("    ADD STOPS     "s);
+                    LOG_DURATION("    ADD STOPS       "s);
                     reader.AddStops();
                 }
 
                 {
-                    LOG_DURATION("    ADD DISTANCES ");
+                    LOG_DURATION("    ADD DISTANCES   ");
                     reader.AddDistances();
                 }
 
                 {
-                    LOG_DURATION("    ADD BUSES     "s);
+                    LOG_DURATION("    ADD BUSES       "s);
                     reader.AddBuses();
                 }
             }
-
+            render::MapRenderer render(catalog, reader.GetRenderSettings(), outf);
             {
-                aggregations::StatReader reader(catalog, inf, outf);
-                LOG_DURATION("QUERY READING AND ANSWERS WRITING"s);
-                reader.ParseBase();
+                LOG_DURATION("RENDERING"s);
+                {
+                    LOG_DURATION("    DRAWING     "s);
+                    render.Render();
+                }
             }
+            std::cerr << "-----------------------------------\n\n"s;
         }
 
-        void TestCatalog() {
-            TestOutput();
-            TestSpeed();
+        void TestCatalogSpeed() {
+            LOG_DURATION("TOTAL"s);
+            aggregations::TransportCatalogue catalog;
+            std::ifstream inf {"s10_final_opentest_3.json"s};
+            std::ofstream outf {"test_output.json"s};
+            interface::JsonReader reader(catalog, inf, outf);
+            {
+                LOG_DURATION("BASE FILLING"s);
+
+                {
+                    LOG_DURATION("    READING         "s);
+                    reader.ReadDocument();
+                }
+
+                {
+                    LOG_DURATION("    PARSING         "s);
+                    reader.ParseDocument();
+                }
+                
+                {
+                    LOG_DURATION("    ADD STOPS       "s);
+                    reader.AddStops();
+                }
+
+                {
+                    LOG_DURATION("    ADD DISTANCES   ");
+                    reader.AddDistances();
+                }
+
+                {
+                    LOG_DURATION("    ADD BUSES       "s);
+                    reader.AddBuses();
+                }
+            }
+            {
+                LOG_DURATION("ANSWERS  "s);
+                {
+                    LOG_DURATION("    GET ANSWERS   "s);
+                    reader.GetAnswers();
+                }
+                {
+                    LOG_DURATION("    PRINT   "s);
+                    reader.PrintAnswers();
+                }
+            }
+            std::cerr << "-----------------------------------\n\n"s;
         }
-    }
+
+        void Test() {
+            RUN_TEST(TestOutput);
+            RUN_TEST(TestCatalogSpeed);
+        }
+    }//tests
 }//tr_cat
 
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "geo.h"
+#include "domain.h"
 
 #include <string>
 #include <list>
@@ -16,40 +17,20 @@
 
 namespace tr_cat {
     namespace aggregations {
-
         using namespace std::string_literals;
 
         class TransportCatalogue {
-
         public:
-            struct Stop;
-            struct Bus {
-                std::string name;
-                std::vector<Stop*> stops;
-                int unique_stops;
-                int distance;
-                double curvature;
-            };
-
-            struct Stop {
-                std::string name;
-                geo::Coordinates coordinates;
-                std::set<std::string_view> buses;
-            };
-
-            void AddStop (std::string& name, geo::Coordinates coords);
-
-            void AddBus (std::string_view name, std::vector<std::string>& stops, const bool is_ring);
-
+            void AddStop (std::string_view name, geo::Coordinates coords);
+            void AddBus (std::string_view name, std::vector<std::string_view>& stops, const bool is_ring);
             void AddDistance(const std::string_view lhs, const std::string_view rhs, double distance);
-
-            std::optional<const Bus*>  GetBusInfo (std::string_view name);
-
-            std::optional<const Stop*> GetStopInfo (std::string_view name);
-
-
+            std::optional<const Bus*>  GetBusInfo (std::string_view name) const;
+            std::optional<const Stop*> GetStopInfo (std::string_view name) const;
+            auto begin() const {return buses_.begin();}
+            auto end() const {return buses_.end();}
+            size_t size() const {return buses_.size();}
+            size_t empty() const {return buses_.empty();}
         private:
-
             class DistanceHasher {
             public:
                 size_t operator() (const std::pair<const Stop*, const Stop*> element) const {
@@ -58,7 +39,6 @@ namespace tr_cat {
                     return result + ((size_t)(element.second) >> shift) * 37;
                 }
             };
-
             class DistanceCompare {
             public:
                 bool operator() (const std::pair<const Stop*, const Stop*> lhs, const std::pair<const Stop*, const Stop*> rhs) const {
@@ -67,25 +47,17 @@ namespace tr_cat {
             };
 
             std::unordered_map<std::pair<const Stop*, const Stop*>, int, DistanceHasher, DistanceCompare> distances_;
-
-
             std::deque<Stop> stops_data_;
             std::deque<Bus> buses_data_;
-
             std::unordered_map<std::string_view, Stop*> stops_container_;
             std::unordered_map<std::string_view, Bus*> buses_container_;
-
-
-            Stop* FindStop (std::string_view name) const;
-
-            Bus* FindBus (std:: string_view name)const;
+            std::vector<std::string_view> buses_;
 
             int ComputeRouteDistance (std::string_view name) const;
-
             double ComputeGeoRouteDistance (std::string_view name) const;
-
             int GetDistance(const Stop* lhs, const Stop* rhs) const;
-
+            Stop* FindStop (std::string_view name) const;
+            Bus* FindBus (std:: string_view name)const;
         };
     }//aggregations
 }//tr_cat

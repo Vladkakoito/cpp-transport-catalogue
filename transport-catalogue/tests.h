@@ -2,11 +2,13 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <strstream>
 
 #include "transport_catalogue.h"
 #include "log_duration.h"
-#include "stat_reader.h"
-#include "input_reader.h"
+#include "request_handler.h"
+#include "json_reader.h"
 
 namespace tr_cat {
     namespace tests {
@@ -41,17 +43,14 @@ namespace tr_cat {
         #define ASSERT_EQUAL(value1, value2) detail::AssertEqualImpl((value1), (value2), #value1, #value2, __FILE__, __FUNCTION__, __LINE__)
         #define ASSERT_EQUAL_HINT(value1, value2, hint) detail::AssertEqualImpl((value1), (value2), #value1, #value2, __FILE__, __FUNCTION__, __LINE__, hint)
 
-        #define ASSERT(expr) AssertImpl((expr), #expr, __FILE__, __FUNCTION__, __LINE__)
+        #define ASSERT(expr) detail::AssertImpl((expr), #expr, __FILE__, __FUNCTION__, __LINE__)
         #define ASSERT_HINT(expr, hint) detail::AssertImpl((expr), #expr, __FILE__, __FUNCTION__, __LINE__, hint)
 
-        #define RUN_TEST(func) RunTestImpl((func), #func)
-
-
+        #define RUN_TEST(func) detail::RunTestImpl((func), #func)
 
         void TestOutput();
-
-        void TestSpeed();
-
-        void TestCatalog();
+        void TestRenderSpeed(); 
+        void TestCatalogSpeed();
+        void Test();
     }//tests
 }//tr_cat
