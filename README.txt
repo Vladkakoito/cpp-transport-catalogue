@@ -1,10 +1,9 @@
-﻿# cpp-transport-catalogue
-#Транспортный справочник
+﻿Транспортный справочник
 
 Упражнение с наследованием классов, созданием SVG-изображений, работой с JSON-файлами. Стандарт С++ 17.
 
 
-#Строение проекта
+Строение проекта
 
 tr_cat::aggregations::TransportCatalogue класс, с информацией о маршрутах и остановках. Создается без аргументов.
 tr_cat::interface::RequestInterface класс для работы с каталогом, чтения и вывода данных. Аргументы — ссылка на класс TransportCatalogue, поток вывода и ввода (по умолчанию std::cin, std::cout).
@@ -17,7 +16,7 @@ tr_cat::interface::RequestInterface класс для работы с катал
 	AddBuses()      //
 	GetAnswers()
 	PrintAnswers()
---------------------
+
 	bool TestingFilesOutput("file1", "file2") //сравнение двух файлов выходного формата
 	tr_cat::render::RenderSettings GetRenderSettings() //настройки рендера
 
@@ -25,8 +24,8 @@ tr_cat::interface::RequestInterface класс для работы с катал
 На данный момент чтение базы и запросов только из JSON.
 Запись в каталог базы и вывод ответов на запросы в формате JSON автоматизирован в функции tr_cat::interface::Process()
 
-
-Программа фрагментирована для тестирования отдельных модулей. Для теста скорости  запустить tr_cat::tests::TestCatalogSpeed(file_input, file_output)
+Программа фрагментирована для тестирования отдельных модулей. 
+Для теста скорости  запустить tr_cat::tests::TestCatalogSpeed(file_input, file_output)
 Для теста ответа запустить tr_cat::tests::TestOutput(file_input, file_output, file_example)
 Для теста скорости рендера в SVG документ запустить TestRenderSpeed(file_input, file_output)
 
