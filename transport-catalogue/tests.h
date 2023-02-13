@@ -33,8 +33,9 @@ namespace tr_cat {
                                                                         unsigned line, const std::string& hint = ""s);
 
             template <typename Func>
-            void RunTestImpl(Func func, const std::string& func_name) {
-                func();
+            void RunTestImpl(Func func, const std::string& func_name, const std::string& file_in, 
+                                        const std::string& file_out, const std::string& file_example) {
+                func(file_in, file_out, file_example);
                 std::cerr << func_name << " OK"s << std::endl;
             }
 
@@ -46,11 +47,11 @@ namespace tr_cat {
         #define ASSERT(expr) detail::AssertImpl((expr), #expr, __FILE__, __FUNCTION__, __LINE__)
         #define ASSERT_HINT(expr, hint) detail::AssertImpl((expr), #expr, __FILE__, __FUNCTION__, __LINE__, hint)
 
-        #define RUN_TEST(func) detail::RunTestImpl((func), #func)
+        #define RUN_TEST(func, file_in, file_out, file_example) detail::RunTestImpl((func), #func, (file_in), (file_out), (file_example))
 
-        void TestOutput();
-        void TestRenderSpeed(); 
-        void TestCatalogSpeed();
-        void Test();
+        void TestOutput(const std::string& file_in, const std::string& file_out, const std::string& file_example);
+        void TestRenderSpeed(const std::string& file_in, const std::string& file_out); 
+        void TestCatalogSpeed(const std::string& file_in, const std::string& file_out, const std::string&);
+        void Test(const std::string file_in, const std::string file_out, const std::string file_example);
     }//tests
 }//tr_cat

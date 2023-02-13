@@ -21,9 +21,9 @@ namespace tr_cat {
 
 
 
-        void TestOutput() {
-            std::ifstream inf {"s10_final_opentest_3.json"s};
-            std::ofstream outf {"test_output.json"s};
+        void TestOutput(const std::string& file_in, const std::string& file_out, const std::string& file_example) {
+            std::ifstream inf {file_in};
+            std::ofstream outf {file_out};
             aggregations::TransportCatalogue catalog;
             interface::JsonReader reader(catalog, inf, outf);
             reader.ReadDocument();
@@ -35,14 +35,15 @@ namespace tr_cat {
             reader.PrintAnswers();
             inf.close();
             outf.close();
-            ASSERT_HINT(reader.TestingFilesOutput("test_output.json"s, "s10_final_opentest_3_answer.json"), "Output files not equal"s);
+            ASSERT_HINT(reader.TestingFilesOutput(file_out, file_example), "Output files not equal"s);
         }
 
-        void TestRenderSpeed() {
+        void TestRenderSpeed(const std::string& file_in, const std::string& file_out) {
+            std::cerr << "Testing Render "s << file_in << std::endl << std::endl;
             LOG_DURATION("TOTAL"s);
             aggregations::TransportCatalogue catalog;
-            std::ifstream inf {"s10_final_opentest_3.json"s};
-            std::ofstream outf {"test_output.svg"s};
+            std::ifstream inf {file_in};
+            std::ofstream outf {file_out};
             interface::JsonReader reader(catalog, inf, outf);
             {
                 LOG_DURATION("BASE FILLING"s);
@@ -76,18 +77,18 @@ namespace tr_cat {
             {
                 LOG_DURATION("RENDERING"s);
                 {
-                    LOG_DURATION("    DRAWING     "s);
+                    LOG_DURATION("    DRAWING         "s);
                     render.Render();
                 }
             }
             std::cerr << "-----------------------------------\n\n"s;
         }
 
-        void TestCatalogSpeed() {
+        void TestCatalogSpeed(const std::string& file_in, const std::string& file_out, const std::string&) {
             LOG_DURATION("TOTAL"s);
             aggregations::TransportCatalogue catalog;
-            std::ifstream inf {"s10_final_opentest_3.json"s};
-            std::ofstream outf {"test_output.json"s};
+            std::ifstream inf {file_in};
+            std::ofstream outf {file_out};
             interface::JsonReader reader(catalog, inf, outf);
             {
                 LOG_DURATION("BASE FILLING"s);
@@ -120,20 +121,28 @@ namespace tr_cat {
             {
                 LOG_DURATION("ANSWERS  "s);
                 {
-                    LOG_DURATION("    GET ANSWERS   "s);
+                    LOG_DURATION("    GET ANSWERS     "s);
                     reader.GetAnswers();
                 }
                 {
-                    LOG_DURATION("    PRINT   "s);
+                    LOG_DURATION("    PRINT           "s);
                     reader.PrintAnswers();
                 }
             }
             std::cerr << "-----------------------------------\n\n"s;
         }
 
-        void Test() {
-            RUN_TEST(TestOutput);
-            RUN_TEST(TestCatalogSpeed);
+        void Test(const std::string file_in, const std::string file_out, std::string file_example = "empty"s) {
+            std::cerr << std::endl << "========================================"s << std::endl;
+            std::cerr << std::endl << "Testing "s << file_in << std::endl << std::endl;
+            if (file_example != "empty"s) {
+                RUN_TEST(TestOutput, file_in, file_out, file_example);
+                std::cerr << std::endl << "========================================"s << std::endl;
+            }
+            std::cerr << std::endl << "Testing Speed "s << file_in << std::endl << std::endl;
+            RUN_TEST(TestCatalogSpeed, file_in, file_out, file_example);
+            std::cerr << std::endl << "========================================"s << std::endl;
+            std::cerr << std::endl;
         }
     }//tests
 }//tr_cat
