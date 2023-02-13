@@ -72,22 +72,24 @@ tr_cat::interface::RequestInterface класс для работы с катал
 		"line_width": 14.0, //толщина линий, которыми рисуются автобусные маршруты
 		"stop_radius": 5.0, //радиус окружностей, которыми обозначаются остановки.
 		"bus_label_font_size": 20,//размер текста, которым написаны названия автобусных маршрутов 
-		"bus_label_offset": [7.0, 15.0], //смещение надписи с названием маршрута относительно координат конечной остановки на карте
+		"bus_label_offset": [7.0, 15.0], //смещение названия маршрута относительно конечной остановки
 		"stop_label_font_size": 20, //размер текста, которым отображаются названия остановок
 		"stop_label_offset": [7.0, -3.0], //смещение названия остановки относительно её координат на карте
 		"underlayer_color": [255, 255, 255, 0.85], //цвет подложки под названиями остановок и маршрутов
 		"underlayer_width": 3.0, //толщина подложки под названиями остановок и маршрутов
-		"color_palette": [  //палитра цветов. Цвет может быть задан в 
-			"green",      //текстовом формате, либо в формате 
-			[255, 160, 0],//rgb, либо в формате rgba
+		"color_palette": [  	//палитра цветов. Цвет может быть задан в 
+			"green",      	//текстовом формате, либо в формате 
+			[255, 160, 0],	//rgb, либо в формате rgba
 			"red" 
 		] 
 	}
 }
 
 Для вывода отдельного SVG-документа с картой нужно создать объект 
-tr_cat::render::MapRenderer  с аргументами: tr_cat::aggregations::TransportCatalogue&,
-tr_cat::render::RenderSettings //возвращает метод GetRenderSettings класса 						 //tr_cat_interface::RequestInterface
+tr_cat::render::MapRenderer  с аргументами:
+tr_cat::aggregations::TransportCatalogue&,
+tr_cat::render::RenderSettings //возвращает метод GetRenderSettings класса
+					 //tr_cat_interface::RequestInterface
 output   //выходной поток, по умолчанию std::cout
 
 И вывести карту методом Render, 
