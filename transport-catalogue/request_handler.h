@@ -5,7 +5,7 @@
 #include <iostream>
 #include <optional>
 #include <variant>
-#include <strstream>
+#include <sstream>
 
 namespace tr_cat {
     namespace interface {

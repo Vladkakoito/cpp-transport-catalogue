@@ -143,12 +143,13 @@ namespace tr_cat {
 
 //--------------------------------------Print--------------------------------------
         void JsonReader::PrepareToPrint() {
-            json::Array to_document; 
-            to_document.reserve(answers_.size());
+            json::Builder builder;
+            builder.StartArray();
             for (auto& answer : answers_) {
-                to_document.push_back(move(visit(CreateNode{render_settings_}, answer)));
+                builder.Value(move(visit(CreateNode{render_settings_}, answer)));
             }
-            document_answers_ = move(to_document);
+            builder.EndArray();
+            document_answers_ = move(builder.Build());
         }  
 
         void JsonReader::PrintAnswers() {
@@ -159,39 +160,38 @@ namespace tr_cat {
 //-----------------------------CreateNode-----------------------------------
 
         json::Node JsonReader::CreateNode::operator() (int value) {
-            map <string, json::Node> answer = {{"request_id"s, value}, 
-                                                {"error_message"s, "not found"s}};
-            return answer;
+            json::Builder builder;
+            return builder.StartDict().Key("request_id"s).Value(value)
+                                 .Key("error_message"s).Value("not found"s).EndDict().Build();
         }
 
         json::Node JsonReader::CreateNode::operator() (StopOutput& value) {
-            json::Array buses;
+            json::Builder builder;
+            builder.StartDict().Key("request_id"s).Value(value.id)
+                                 .Key("buses"s).StartArray();
             for (string_view bus : value.stop->buses) {
-                buses.push_back(move(static_cast<string>(bus)));
+                builder.Value(static_cast<string>(bus));
             }
-
-            map <string, json::Node> answer = {{"buses"s, buses},
-                                               {"request_id"s, value.id}};
-            return answer;
+            return builder.EndArray().EndDict().Build();
         }
 
         json::Node JsonReader::CreateNode::operator() (BusOutput& value) {
-            map <string, json::Node> answer = {{"request_id"s, value.id},
-                                               {"curvature"s, value.bus->curvature},
-                                               {"route_length"s, static_cast<double>(value.bus->distance)},
-                                               {"stop_count"s, static_cast<int>(value.bus->stops.size())},
-                                               {"unique_stop_count"s, value.bus->unique_stops}};
-        return answer;
+            json::Builder builder;
+            return builder.StartDict().Key("request_id"s).Value(value.id)
+                                 .Key("curvature"s).Value(value.bus->curvature)
+                                 .Key("route_length"s).Value(static_cast<double>(value.bus->distance))
+                                 .Key("stop_count"s).Value(static_cast<int>(value.bus->stops.size()))
+                                 .Key("unique_stop_count"s).Value(value.bus->unique_stops).EndDict().Build();
         }
 
         json::Node JsonReader::CreateNode::operator() (MapOutput& value) {
+            json::Builder builder;
             ostringstream output;
             render::MapRenderer renderer(*value.catalog, settings_, output);
             renderer.Render();
 
-            map<string, json::Node> answer = {{"request_id"s, value.id},
-                                              {"map"s, output.str()}};
-            return answer;
+            return builder.StartDict().Key("request_id"s).Value(value.id)
+                                 .Key("map"s).Value(output.str()).EndDict().Build();
         }
 
         const render::RenderSettings& JsonReader::GetRenderSettings() const {
