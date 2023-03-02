@@ -28,7 +28,9 @@ namespace tr_cat {
             void AddStops ();
             void AddDistances ();
             void AddBuses ();
+            virtual void CreateGraph() = 0;
 //-------------------------------------------print------------------------------------------------------  
+            virtual void RenderMap(std::ostream& out = std::cout) = 0;
             void GetAnswers ();                                            
             virtual void PrintAnswers () = 0;                   
 //------------------------------------------------------------------------------------------------------
@@ -53,6 +55,8 @@ namespace tr_cat {
                 int id;
                 std::string_view type;
                 std::string_view name;
+                std::string_view from;
+                std::string_view to;
             };
             struct StopOutput {
                 int id;
@@ -68,11 +72,16 @@ namespace tr_cat {
                 int id;
                 aggregations::TransportCatalogue* catalog;
             };
+            struct RouteOutput {
+                int id;
+                const Stop* from;
+                const Stop* to;
+            };
             std::vector<StopInput> stops_;
             std::vector<BusInput> buses_;
             std::unordered_map<std::string_view, std::vector<std::pair<std::string_view, int>>> distances_;
             std::vector<Stat> stats_;
-            std::vector<std::variant<int, StopOutput, BusOutput, MapOutput>> answers_;
+            std::vector<std::variant<int, StopOutput, BusOutput, MapOutput, RouteOutput>> answers_;
             std::istream& input_ = std::cin;
             std::ostream& output_ = std::cout;
         private:

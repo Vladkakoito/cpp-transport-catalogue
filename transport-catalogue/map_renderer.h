@@ -108,17 +108,15 @@ namespace tr_cat {
         class MapRenderer {
         public:
             MapRenderer() = delete;
-            MapRenderer(const aggregations::TransportCatalogue& catalog, const RenderSettings& settings)
-            :catalog_(catalog), settings_(settings) {}
-            MapRenderer(const aggregations::TransportCatalogue& catalog, const RenderSettings& settings, std::ostream& output)
-            :catalog_(catalog), settings_(settings), output_(output) {}
+            MapRenderer(const aggregations::TransportCatalogue& catalog)
+            :catalog_(catalog) {}
 
-            void Render();
+            void SetRenderSettings(RenderSettings&& settings) {settings_ = settings;}
+            void Render(std::ostream& out);
 
         private:
             const aggregations::TransportCatalogue& catalog_;
             RenderSettings settings_;
-            std::ostream& output_ = std::cout;
             std::unordered_set<geo::Coordinates, CoordinatesHasher> CollectCoordinates () const;
             std::pair<std::unique_ptr<svg::Text>, std::unique_ptr<svg::Text>> AddBusLabels(SphereProjector& project, 
                                                             int index_color, const Stop* stop, std::string_view name);

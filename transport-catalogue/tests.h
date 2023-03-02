@@ -51,7 +51,7 @@ namespace tr_cat {
 
         void TestOutput(const std::string& file_in, const std::string& file_out, const std::string& file_example);
         void TestRenderSpeed(const std::string& file_in, const std::string& file_out); 
-        void TestCatalogSpeed(const std::string& file_in, const std::string& file_out, const std::string&);
-        void Test(const std::string file_in, const std::string file_out, const std::string file_example);
+        void TestCatalogSpeed(const std::string& file_in, const std::string& file_out, const std::string& render_file);
+        void Test(const std::string file_in, const std::string file_out, const std::string file_example, const std::string file_map);
     }//tests
 }//tr_cat

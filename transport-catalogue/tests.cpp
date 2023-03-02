@@ -31,11 +31,13 @@ namespace tr_cat {
             reader.AddStops();
             reader.AddDistances();
             reader.AddBuses();
+            reader.CreateGraph();
             reader.GetAnswers();
             reader.PrintAnswers();
             inf.close();
             outf.close();
-            ASSERT_HINT(reader.TestingFilesOutput(file_out, file_example), "Output files not equal"s);
+            ASSERT_HINT(reader.TestingFilesOutput(file_out, file_example), "\nOutput files not equal:\n"s 
+                                                + file_out + '\n' + file_example + '\n');
         }
 
         void TestRenderSpeed(const std::string& file_in, const std::string& file_out) {
@@ -73,18 +75,17 @@ namespace tr_cat {
                     reader.AddBuses();
                 }
             }
-            render::MapRenderer render(catalog, reader.GetRenderSettings(), outf);
             {
                 LOG_DURATION("RENDERING"s);
                 {
                     LOG_DURATION("    DRAWING         "s);
-                    render.Render();
+                    reader.RenderMap(outf);
                 }
             }
             std::cerr << "-----------------------------------\n\n"s;
         }
 
-        void TestCatalogSpeed(const std::string& file_in, const std::string& file_out, const std::string&) {
+        void TestCatalogSpeed(const std::string& file_in, const std::string& file_out, const std::string& render_file) {
             LOG_DURATION("TOTAL"s);
             aggregations::TransportCatalogue catalog;
             std::ifstream inf {file_in};
@@ -117,6 +118,15 @@ namespace tr_cat {
                     LOG_DURATION("    ADD BUSES       "s);
                     reader.AddBuses();
                 }
+                {
+                    LOG_DURATION("    RENDER MAP      "s);
+                    std::ofstream out_render {render_file};
+                    reader.RenderMap(out_render);
+                }
+                {
+                    LOG_DURATION("    CREATE GRAPH    "s);
+                    reader.CreateGraph();
+                }
             }
             {
                 LOG_DURATION("ANSWERS  "s);
@@ -132,15 +142,16 @@ namespace tr_cat {
             std::cerr << "-----------------------------------\n\n"s;
         }
 
-        void Test(const std::string file_in, const std::string file_out, std::string file_example = "empty"s) {
+        void Test(const std::string file_in, const std::string file_out, const std::string file_example,
+                                                                        const std::string file_map) {
+                                                                            
             std::cerr << std::endl << "========================================"s << std::endl;
             std::cerr << std::endl << "Testing "s << file_in << std::endl << std::endl;
-            if (file_example != "empty"s) {
-                RUN_TEST(TestOutput, file_in, file_out, file_example);
-                std::cerr << std::endl << "========================================"s << std::endl;
-            }
+            RUN_TEST(TestOutput, file_in, file_out, file_example);
+            std::cerr << std::endl << "========================================"s << std::endl;
+
             std::cerr << std::endl << "Testing Speed "s << file_in << std::endl << std::endl;
-            RUN_TEST(TestCatalogSpeed, file_in, file_out, file_example);
+            RUN_TEST(TestCatalogSpeed, file_in, file_out, file_map);
             std::cerr << std::endl << "========================================"s << std::endl;
             std::cerr << std::endl;
         }

@@ -1,22 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
- <polyline points="25924.4,35685.7 22325.6,22325.6 25924.4,35685.7" fill="none" stroke="rgba(195,60,81,0.624413)" stroke-width="38727.6" stroke-linecap="round" stroke-linejoin="round"/>
- <polyline points="22325.6,22325.6 25924.4,35685.7 22325.6,22325.6" fill="none" stroke="rgb(2,81,213)" stroke-width="38727.6" stroke-linecap="round" stroke-linejoin="round"/>
- <polyline points="22325.6,22325.6 25924.4,35685.7 22325.6,22325.6" fill="none" stroke="rgba(81,152,19,0.683438)" stroke-width="38727.6" stroke-linecap="round" stroke-linejoin="round"/>
- <text fill="coral" stroke="coral" stroke-width="34006.7" stroke-linecap="round" stroke-linejoin="round" x="25924.4" y="35685.7" dx="59718.9" dy="15913.5" font-size="78497" font-family="Verdana" font-weight="bold">RkYZl</text>
- <text fill="rgba(195,60,81,0.624413)" x="25924.4" y="35685.7" dx="59718.9" dy="15913.5" font-size="78497" font-family="Verdana" font-weight="bold">RkYZl</text>
- <text fill="coral" stroke="coral" stroke-width="34006.7" stroke-linecap="round" stroke-linejoin="round" x="22325.6" y="22325.6" dx="59718.9" dy="15913.5" font-size="78497" font-family="Verdana" font-weight="bold">RkYZl</text>
- <text fill="rgba(195,60,81,0.624413)" x="22325.6" y="22325.6" dx="59718.9" dy="15913.5" font-size="78497" font-family="Verdana" font-weight="bold">RkYZl</text>
- <text fill="coral" stroke="coral" stroke-width="34006.7" stroke-linecap="round" stroke-linejoin="round" x="22325.6" y="22325.6" dx="59718.9" dy="15913.5" font-size="78497" font-family="Verdana" font-weight="bold">i</text>
- <text fill="rgb(2,81,213)" x="22325.6" y="22325.6" dx="59718.9" dy="15913.5" font-size="78497" font-family="Verdana" font-weight="bold">i</text>
- <text fill="coral" stroke="coral" stroke-width="34006.7" stroke-linecap="round" stroke-linejoin="round" x="25924.4" y="35685.7" dx="59718.9" dy="15913.5" font-size="78497" font-family="Verdana" font-weight="bold">i</text>
- <text fill="rgb(2,81,213)" x="25924.4" y="35685.7" dx="59718.9" dy="15913.5" font-size="78497" font-family="Verdana" font-weight="bold">i</text>
- <text fill="coral" stroke="coral" stroke-width="34006.7" stroke-linecap="round" stroke-linejoin="round" x="22325.6" y="22325.6" dx="59718.9" dy="15913.5" font-size="78497" font-family="Verdana" font-weight="bold">jUYheoA3Mcm2 kqTN</text>
- <text fill="rgba(81,152,19,0.683438)" x="22325.6" y="22325.6" dx="59718.9" dy="15913.5" font-size="78497" font-family="Verdana" font-weight="bold">jUYheoA3Mcm2 kqTN</text>
- <circle cx="22325.6" cy="22325.6" r="21462.7" fill="white"/>
- <circle cx="25924.4" cy="35685.7" r="21462.7" fill="white"/>
- <text fill="coral" stroke="coral" stroke-width="34006.7" stroke-linecap="round" stroke-linejoin="round" x="22325.6" y="22325.6" dx="-23192" dy="92100.2" font-size="86988" font-family="Verdana">gtKSYiTpuO3KjmLenbqOj7iO</text>
- <text fill="black" x="22325.6" y="22325.6" dx="-23192" dy="92100.2" font-size="86988" font-family="Verdana">gtKSYiTpuO3KjmLenbqOj7iO</text>
- <text fill="coral" stroke="coral" stroke-width="34006.7" stroke-linecap="round" stroke-linejoin="round" x="25924.4" y="35685.7" dx="-23192" dy="92100.2" font-size="86988" font-family="Verdana">vtkKOKMLWRQv</text>
- <text fill="black" x="25924.4" y="35685.7" dx="-23192" dy="92100.2" font-size="86988" font-family="Verdana">vtkKOKMLWRQv</text>
+ <polyline points="169.385,48.3548 170,42.8043 167.495,44.179 168.345,46.2505 169.572,46.5781 169.385,48.3548" fill="none" stroke="green" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+ <polyline points="170,42.8043 167.495,44.179 168.345,46.2505 166.417,46.37 164.298,39.1664 154.371,36.6151 164.298,39.1664 166.417,46.37 168.345,46.2505 167.495,44.179 170,42.8043" fill="none" stroke="rgb(255,160,0)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+ <polyline points="30,36.8132 69.3042,30 30,36.8132" fill="none" stroke="red" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+ <polyline points="169.385,48.3548 166.417,46.37 168.345,46.2505 167.495,44.179 164.298,39.1664 154.943,41.6881 164.298,39.1664 167.495,44.179 168.345,46.2505 166.417,46.37 169.385,48.3548" fill="none" stroke="green" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="169.385" y="48.3548" dx="7" dy="15" font-size="20" font-family="Verdana" font-weight="bold">297</text>
+ <text fill="green" x="169.385" y="48.3548" dx="7" dy="15" font-size="20" font-family="Verdana" font-weight="bold">297</text>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="170" y="42.8043" dx="7" dy="15" font-size="20" font-family="Verdana" font-weight="bold">635</text>
+ <text fill="rgb(255,160,0)" x="170" y="42.8043" dx="7" dy="15" font-size="20" font-family="Verdana" font-weight="bold">635</text>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="154.371" y="36.6151" dx="7" dy="15" font-size="20" font-family="Verdana" font-weight="bold">635</text>
+ <text fill="rgb(255,160,0)" x="154.371" y="36.6151" dx="7" dy="15" font-size="20" font-family="Verdana" font-weight="bold">635</text>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="30" y="36.8132" dx="7" dy="15" font-size="20" font-family="Verdana" font-weight="bold">750</text>
+ <text fill="red" x="30" y="36.8132" dx="7" dy="15" font-size="20" font-family="Verdana" font-weight="bold">750</text>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="69.3042" y="30" dx="7" dy="15" font-size="20" font-family="Verdana" font-weight="bold">750</text>
+ <text fill="red" x="69.3042" y="30" dx="7" dy="15" font-size="20" font-family="Verdana" font-weight="bold">750</text>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="169.385" y="48.3548" dx="7" dy="15" font-size="20" font-family="Verdana" font-weight="bold">828</text>
+ <text fill="green" x="169.385" y="48.3548" dx="7" dy="15" font-size="20" font-family="Verdana" font-weight="bold">828</text>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="154.943" y="41.6881" dx="7" dy="15" font-size="20" font-family="Verdana" font-weight="bold">828</text>
+ <text fill="green" x="154.943" y="41.6881" dx="7" dy="15" font-size="20" font-family="Verdana" font-weight="bold">828</text>
+ <circle cx="169.572" cy="46.5781" r="5" fill="white"/>
+ <circle cx="170" cy="42.8043" r="5" fill="white"/>
+ <circle cx="169.385" cy="48.3548" r="5" fill="white"/>
+ <circle cx="168.345" cy="46.2505" r="5" fill="white"/>
+ <circle cx="164.298" cy="39.1664" r="5" fill="white"/>
+ <circle cx="154.371" cy="36.6151" r="5" fill="white"/>
+ <circle cx="69.3042" cy="30" r="5" fill="white"/>
+ <circle cx="154.943" cy="41.6881" r="5" fill="white"/>
+ <circle cx="166.417" cy="46.37" r="5" fill="white"/>
+ <circle cx="30" cy="36.8132" r="5" fill="white"/>
+ <circle cx="167.495" cy="44.179" r="5" fill="white"/>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="169.572" y="46.5781" dx="7" dy="-3" font-size="20" font-family="Verdana">Apteka</text>
+ <text fill="black" x="169.572" y="46.5781" dx="7" dy="-3" font-size="20" font-family="Verdana">Apteka</text>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="170" y="42.8043" dx="7" dy="-3" font-size="20" font-family="Verdana">Biryulyovo Tovarnaya</text>
+ <text fill="black" x="170" y="42.8043" dx="7" dy="-3" font-size="20" font-family="Verdana">Biryulyovo Tovarnaya</text>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="169.385" y="48.3548" dx="7" dy="-3" font-size="20" font-family="Verdana">Biryulyovo Zapadnoye</text>
+ <text fill="black" x="169.385" y="48.3548" dx="7" dy="-3" font-size="20" font-family="Verdana">Biryulyovo Zapadnoye</text>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="168.345" y="46.2505" dx="7" dy="-3" font-size="20" font-family="Verdana">Biryusinka</text>
+ <text fill="black" x="168.345" y="46.2505" dx="7" dy="-3" font-size="20" font-family="Verdana">Biryusinka</text>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="164.298" y="39.1664" dx="7" dy="-3" font-size="20" font-family="Verdana">Pokrovskaya</text>
+ <text fill="black" x="164.298" y="39.1664" dx="7" dy="-3" font-size="20" font-family="Verdana">Pokrovskaya</text>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="154.371" y="36.6151" dx="7" dy="-3" font-size="20" font-family="Verdana">Prazhskaya</text>
+ <text fill="black" x="154.371" y="36.6151" dx="7" dy="-3" font-size="20" font-family="Verdana">Prazhskaya</text>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="69.3042" y="30" dx="7" dy="-3" font-size="20" font-family="Verdana">Rasskazovka</text>
+ <text fill="black" x="69.3042" y="30" dx="7" dy="-3" font-size="20" font-family="Verdana">Rasskazovka</text>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="154.943" y="41.6881" dx="7" dy="-3" font-size="20" font-family="Verdana">Rossoshanskaya ulitsa</text>
+ <text fill="black" x="154.943" y="41.6881" dx="7" dy="-3" font-size="20" font-family="Verdana">Rossoshanskaya ulitsa</text>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="166.417" y="46.37" dx="7" dy="-3" font-size="20" font-family="Verdana">TETs 26</text>
+ <text fill="black" x="166.417" y="46.37" dx="7" dy="-3" font-size="20" font-family="Verdana">TETs 26</text>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="30" y="36.8132" dx="7" dy="-3" font-size="20" font-family="Verdana">Tolstopaltsevo</text>
+ <text fill="black" x="30" y="36.8132" dx="7" dy="-3" font-size="20" font-family="Verdana">Tolstopaltsevo</text>
+ <text fill="rgba(255,255,255,0.85)" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="167.495" y="44.179" dx="7" dy="-3" font-size="20" font-family="Verdana">Universam</text>
+ <text fill="black" x="167.495" y="44.179" dx="7" dy="-3" font-size="20" font-family="Verdana">Universam</text>
 </svg>
