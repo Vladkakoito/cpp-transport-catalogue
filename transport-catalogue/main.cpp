@@ -11,25 +11,7 @@ using namespace std;
 using namespace tr_cat;
 
 int main() {
-/*
-    tr_cat::aggregations::TransportCatalogue catalog;
-    tr_cat::interface::JsonReader reader(catalog);
-    tr_cat::interface::Process(reader); */
-    tests::Test("test_files/input/test1_input.json"s, "test_files/output/test1_output.json"s,
-                "test_files/example/test1_example.json"s, "test_files/maps/test1_map.svg"s);
-
-    tests::Test("test_files/input/test2_input.json"s, "test_files/output/test2_output.json"s, 
-                "test_files/example/test2_example.json"s, "test_files/maps/test2_map.svg"s);
-
-    tests::Test("test_files/input/test3_input.json"s, "test_files/output/test3_output.json"s, 
-                "test_files/example/test3_example.json"s, "test_files/maps/test3_map.svg"s);
-
-/*
-    tests::Test("test_files/input/test4_input.json"s, "test_files/output/test4_output.json"s, "test_files/example/test4_example.json"s);
-    tests::TestRenderSpeed("test_files/input/test4_input.json", "test_files/maps/test4_map.svg"s);
-    
-*/
-    tests::TestCatalogSpeed("test_files/input/test5_input.json", "test_files/output/test5_output.json"s,
-                             "test_files/maps/test5_map.svg"s);
+    tests::Test("tests/test_make.json", "tests/test_stats.json"s, "tests/test_out.json"s,
+                "tests/test_answer.json"s, "test_files/maps/test5_map.svg"s);
 
 }

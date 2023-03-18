@@ -7,20 +7,21 @@
 #include <memory>
 #include <set>
 #include <exception>
+#include <map>
 
 namespace tr_cat {
 
 namespace router {
 
 struct RoutingSettings {
-    int bus_wait_time = 0;
-    int bus_velocity = 0;
+    uint32_t bus_wait_time = 0;
+    uint32_t bus_velocity = 0;
 };
 
 struct EdgeInfo {
     const Stop* stop;
     const Bus* bus;
-    int count;
+    uint32_t count;
 };
 
 
@@ -30,7 +31,7 @@ struct CompletedRoute {
         const Bus* bus; 
         double wait_time;
         double run_time;
-        int count_stops;
+        uint32_t count_stops;
     };
     double total_time;
     std::vector<Line> route;
@@ -42,8 +43,10 @@ public:
     explicit TransportRouter (const aggregations::TransportCatalogue& catalog) :catalog_(catalog){}
 
     std::optional<CompletedRoute> ComputeRoute (graph::VertexId from, graph::VertexId to);
-    void CreateGraph();
+    void CreateGraph(bool create_router = true);
     void SetSettings(RoutingSettings&& settings) {routing_settings_ = settings;}
+    transport_catalog_serialize::Router Serialize (bool with_graph = false) const;
+    bool Deserialize(transport_catalog_serialize::Router& router_data, bool with_graph = false);
 
 private:
     RoutingSettings routing_settings_;
