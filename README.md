@@ -17,7 +17,7 @@
 ```
     cmake ../
     cmake --build .
-    ./transport_catalogue
+    ./transport_catalogue test
 ``` 
    Подробности использования в файле `instructions.json`
 
