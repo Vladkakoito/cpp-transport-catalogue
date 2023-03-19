@@ -1,0 +1,11 @@
+prefix=/home/vlad/Документы/Yandex_Praktikum/protobuf/debug
+exec_prefix=/home/vlad/Документы/Yandex_Praktikum/protobuf/debug
+libdir=/home/vlad/Документы/Yandex_Praktikum/protobuf/debug/lib
+includedir=/home/vlad/Документы/Yandex_Praktikum/protobuf/debug/include
+
+Name: Protocol Buffers
+Description: Google's Data Interchange Format
+Version: 3.21.11.0
+Libs: -L${libdir} -lprotobuf-lite -lpthread
+Cflags: -I${includedir}
+Conflicts: protobuf

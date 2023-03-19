@@ -7,12 +7,12 @@ namespace tests {
 namespace detail {
 
 void AssertImpl(const bool value, const std::string& expr, const std::string& file, const std::string& func,
-                unsigned line, const std::string& hint) {
+                unsigned line, std::ostream& stream, const std::string& hint) {
     if (!value) {
-        std::cerr << std::boolalpha;
-        std::cerr << file << "("s << line << "): "s << func << ": "s << "ASSERT("s << expr << ") failed."s;
+        stream << std::boolalpha;
+        stream << file << "("s << line << "): "s << func << ": "s << "ASSERT("s << expr << ") failed."s;
         if (!hint.empty()) {
-            std::cerr << " Hint: "s << hint << std::endl;;
+            stream << " Hint: "s << hint << std::endl;;
         }
         abort();
     }
@@ -22,12 +22,12 @@ void AssertImpl(const bool value, const std::string& expr, const std::string& fi
 
 
 void TestOutput(const std::string& file_in_make_base, const std::string& file_in_stats,
-                const std::string& file_out, const std::string& file_example) {
+                const std::string& file_out, const std::string& file_example, std::ostream& stream) {
     {
         std::ifstream inf_make {file_in_make_base};
         std::ifstream inf_stats{file_in_stats};
         std::ofstream outf {file_out};
-        unsigned long long int size_file;
+        size_t size_file;
         {
             aggregations::TransportCatalogue catalog;
             interface::JsonReader reader(catalog, inf_make, outf);
@@ -52,16 +52,16 @@ void TestOutput(const std::string& file_in_make_base, const std::string& file_in
             outf.close();
             ASSERT_HINT(reader.TestingFilesOutput(file_out, file_example),
                                             "\nOutput files not equal. Without graph:\n"s
-                                            + file_out + '\n' + file_example + '\n');
+                                            + file_out + '\n' + file_example + '\n', stream);
         }
-        std::cerr << "Test without saving graph OK. Saved file is size: "s << sizeof (size_file) / 8 << "bytes\n"s;
+        stream << "Test without saving graph OK. Saved file is size: "s << size_file << " bytes\n"s;
     }
 
     {
         std::ifstream inf_make {file_in_make_base};
         std::ifstream inf_stats{file_in_stats};
         std::ofstream outf {file_out};
-        unsigned long long int size_file;
+        size_t size_file;
         {
             aggregations::TransportCatalogue catalog;
             interface::JsonReader reader(catalog, inf_make, outf);
@@ -86,163 +86,117 @@ void TestOutput(const std::string& file_in_make_base, const std::string& file_in
             outf.close();
             ASSERT_HINT(reader.TestingFilesOutput(file_out, file_example),
                                             "\nOutput files not equal. Without graph:\n"s
-                                            + file_out + '\n' + file_example + '\n');
+                                            + file_out + '\n' + file_example + '\n', stream);
         }
-        std::cerr << "Test with saving graph OK. Saved file is size: "s << sizeof (size_file) / 8 << "bytes\n"s;
+        stream << "Test with saving graph OK. Saved file is size: "s << size_file << " bytes\n"s;
     }
 
-}
-
-void TestRenderSpeed(const std::string& file_in, const std::string& file_out) {
-    std::cerr << "Testing Render "s << file_in << std::endl << std::endl;
-    LOG_DURATION("TOTAL"s);
-    aggregations::TransportCatalogue catalog;
-    std::ifstream inf {file_in};
-    std::ofstream outf {file_out};
-    interface::JsonReader reader(catalog, inf, outf);
-    {
-        LOG_DURATION("BASE FILLING"s);
-
-        {
-            LOG_DURATION("    READING         "s);
-            reader.ReadDocument();
-        }
-
-        {
-            LOG_DURATION("    PARSING         "s);
-            reader.ParseDocument();
-        }
-
-        {
-            LOG_DURATION("    ADD STOPS       "s);
-            reader.AddStops();
-        }
-
-        {
-            LOG_DURATION("    ADD DISTANCES   ");
-            reader.AddDistances();
-        }
-
-        {
-            LOG_DURATION("    ADD BUSES       "s);
-            reader.AddBuses();
-        }
-    }
-    {
-        LOG_DURATION("RENDERING"s);
-        {
-            LOG_DURATION("    DRAWING         "s);
-            reader.RenderMap(outf);
-        }
-    }
-    std::cerr << "-----------------------------------\n\n"s;
 }
 
 size_t TestCatalogSpeed(const std::string& file_in_make_base, const std::string& file_stats,
-                      const std::string& file_out, const std::string& render_file, bool with_graph) {
+                      const std::string& file_out, const std::string& render_file,
+                        bool with_graph, std::ostream& stream) {
     std::ifstream inf_make {file_in_make_base};
     std::ofstream outf {file_out};
     aggregations::TransportCatalogue catalog;
     interface::JsonReader reader(catalog, inf_make, outf);
     size_t fsize;
-    LOG_DURATION("TOTAL WITHOUT CONSTRUCTORS READER AND CATALOG"s);
+    LOG_DURATION_STREAM("TOTAL WITHOUT CONSTRUCTORS READER AND CATALOG"s, stream);
     {
-        LOG_DURATION("BASE FILLING"s);
 
         {
-            LOG_DURATION("    READING         "s);
+            LOG_DURATION_STREAM("    READING             "s, stream);
             reader.ReadDocument();
         }
-
         {
-            LOG_DURATION("    PARSING         "s);
+            LOG_DURATION_STREAM("    PARSING             "s, stream);
             reader.ParseDocument();
         }
-
         {
-            LOG_DURATION("    ADD STOPS       "s);
+            LOG_DURATION_STREAM("    ADD STOPS           "s, stream);
             reader.AddStops();
         }
-
         {
-            LOG_DURATION("    ADD DISTANCES   ");
+            LOG_DURATION_STREAM("    ADD DISTANCES       ", stream);
             reader.AddDistances();
         }
-
         {
-            LOG_DURATION("    ADD BUSES       "s);
+            LOG_DURATION_STREAM("    ADD BUSES           "s, stream);
             reader.AddBuses();
         }
         {
-            LOG_DURATION("    RENDER MAP      "s);
+            LOG_DURATION_STREAM("    RENDER MAP          "s, stream);
             std::ofstream out_render {render_file};
             reader.RenderMap(out_render);
         }
         {
-            LOG_DURATION("    CREATE GRAPH    "s);
+            LOG_DURATION_STREAM("    CREATE GRAPH        "s, stream);
             reader.CreateGraph();
         }
     }
     {
 
-        LOG_DURATION("    SERIALIZATION       "s);
+        LOG_DURATION_STREAM("SERIALIZATION   "s, stream);
         fsize = reader.Serialize(with_graph);
 
     }
     std::ifstream inf_stats {file_stats};
     aggregations::TransportCatalogue catalog2;
     interface::JsonReader reader2(catalog2, inf_stats, outf);
+    stream << "\n"s;
     {
-        LOG_DURATION("READ AND PARSING STATS"s);
+        LOG_DURATION_STREAM("    READ & PARSING STATS"s, stream);
         reader2.ReadDocument();
         reader2.ParseDocument();
     }
     {
-        LOG_DURATION("DESERIALIZATION"s);
+        LOG_DURATION_STREAM("DESERIALIZATION "s, stream);
         reader2.Deserialize(with_graph);
     }
     {
-        LOG_DURATION("ANSWERS  "s);
         {
-            LOG_DURATION("    GET ANSWERS     "s);
+            LOG_DURATION_STREAM("    GET ANSWERS         "s, stream);
             reader2.GetAnswers();
         }
         {
-            LOG_DURATION("    PRINT           "s);
+            LOG_DURATION_STREAM("    PRINT               "s, stream);
             reader2.PrintAnswers();
         }
     }
-    std::cerr << "-----------------------------------\n\n"s;
+    stream << "-----------------------------------\n"s;
     return fsize;
 }
 
 void Test(const std::string file_in_make_base, const std::string file_in_stats,
-          const std::string file_out, const std::string file_example, const std::string file_map) {
-/*
-    std::cerr << std::endl << "========================================"s << std::endl;
-    std::cerr << std::endl << "Testing "s << std::endl << std::endl;
-    TestOutput(file_in_make_base, file_in_stats, file_out, file_example);
-    std::cerr << std::endl << "========================================"s << std::endl;
-*/
-    std::cerr << std::endl << "Testing Speed without saving graph "s << std::endl << std::endl;
+          const std::string file_out, const std::string file_example, 
+          const std::string file_map, std::ostream& stream = std::cerr) {
+
+    stream << std::endl << "========================================"s << std::endl;
+    stream << std::endl << "Testing\nFiles : "s << file_in_make_base;
+    stream << ' ' << file_in_stats << ' ' << file_out << ' ' << file_map << std::endl << std::endl;
+    TestOutput(file_in_make_base, file_in_stats, file_out, file_example, stream);
+    stream << std::endl << "----------------------------------------"s << std::endl;
+
+    stream << std::endl << "Testing Speed without saving graph.\nFiles : "s << file_in_make_base;
+    stream << ' ' << file_in_stats << ' ' << file_out << ' ' << file_map << std::endl << std::endl;
     {
-        LOG_DURATION("TOTAL TIME"s);
-        size_t fsize = TestCatalogSpeed (file_in_make_base, file_in_stats, file_out, file_map, false);
-        std::cerr << "Size saving file: "s << fsize << '\n';
+        LOG_DURATION_STREAM("TOTAL TIME"s, stream);
+        size_t fsize = TestCatalogSpeed (file_in_make_base, file_in_stats, file_out, file_map, false, stream);
+        stream << "Size saving file: "s << fsize << " bytes\n"s;
     }
 
-    std::cerr << std::endl << "========================================"s << std::endl;
-    std::cerr << std::endl;
+    stream << std::endl << "-----------------------------------------"s << std::endl;
 
-    std::cerr << std::endl << "Testing Speed with saving graph "s << std::endl << std::endl;
+    stream << std::endl << "Testing Speed with saving graph.\nFiles : "s << file_in_make_base;
+    stream << ' ' << file_in_stats << ' ' << file_out << ' ' << file_map << std::endl << std::endl;
     {
-        LOG_DURATION("TOTAL TIME"s);
-        size_t fsize = TestCatalogSpeed(file_in_make_base, file_in_stats, file_out, file_map, true);
-        std::cerr << "Size saving file: "s << fsize << '\n';
+        LOG_DURATION_STREAM("TOTAL TIME"s, stream);
+        size_t fsize = TestCatalogSpeed(file_in_make_base, file_in_stats, file_out, file_map, true, stream);
+        stream << "Size saving file: "s << fsize << " bytes\n"s;
     }
 
-    std::cerr << std::endl << "========================================"s << std::endl;
-    std::cerr << std::endl;
+    stream << "========================================"s << std::endl;
+    stream << std::endl;
 }
 }//tests
 }//tr_cat

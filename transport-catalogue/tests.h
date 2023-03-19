@@ -15,46 +15,50 @@ namespace tests {
 namespace detail {
 
 template <typename Type1, typename Type2>
-void AssertEqualImpl(const Type1& value1, const Type2 value2, const std::string& str_value1, const std::string& str_value2,
-    const std::string& file, const std::string& func, unsigned line, const std::string& hint = ""s) {
+void AssertEqualImpl(const Type1& value1, const Type2 value2, 
+                     const std::string& str_value1, const std::string& str_value2,
+                     const std::string& file, const std::string& func, unsigned line, 
+                     std::ostream& stream = std::cerr, const std::string& hint = ""s) {
 
     if (value1 != static_cast<Type1>(value2)) {
-        std::cerr << file << "("s << line << "): "s << func << ": ASSERT_EQUAL("s << str_value1 << ", "s << str_value2;
-        std::cerr << ") failed: "s << value1 << " != "s << value2 << "."s;
+        stream << file << "("s << line << "): "s << func << ": ASSERT_EQUAL("s << str_value1 << ", "s << str_value2;
+        stream << ") failed: "s << value1 << " != "s << value2 << "."s;
         if (!hint.empty()) {
-            std::cerr << " Hint: "s << hint;
+            stream << " Hint: "s << hint;
         }
-        std::cerr << std::endl;
+        stream << std::endl;
         abort();
     }
 }
 
-void AssertImpl(const bool value, const std::string& expr, const std::string& file, const std::string& func,
-                                                            unsigned line, const std::string& hint = ""s);
+void AssertImpl(const bool value, const std::string& expr, 
+                const std::string& file, const std::string& func,
+                unsigned line, std::ostream& stream = std::cerr, const std::string& hint = ""s);
 
 template <typename Func>
 void RunTestImpl(Func func, const std::string& func_name, const std::string& file_in,
-                            const std::string& file_out, const std::string& file_example) {
+                            const std::string& file_out, const std::string& file_example, 
+                            std::ostream& stream = std::cerr) {
     func(file_in, file_out, file_example);
-    std::cerr << func_name << " OK"s << std::endl;
+    stream << func_name << " OK"s << std::endl;
 }
 
 } //detail
 
-#define ASSERT_EQUAL(value1, value2) detail::AssertEqualImpl((value1), (value2), #value1, #value2, __FILE__, __FUNCTION__, __LINE__)
-#define ASSERT_EQUAL_HINT(value1, value2, hint) detail::AssertEqualImpl((value1), (value2), #value1, #value2, __FILE__, __FUNCTION__, __LINE__, hint)
+#define ASSERT_EQUAL(value1, value2, stream) detail::AssertEqualImpl((value1), (value2), #value1, #value2, __FILE__, __FUNCTION__, __LINE__, stream)
+#define ASSERT_EQUAL_HINT(value1, value2, stream, hint) detail::AssertEqualImpl((value1), (value2), #value1, #value2, __FILE__, __FUNCTION__, __LINE__, hint, stream)
 
-#define ASSERT(expr) detail::AssertImpl((expr), #expr, __FILE__, __FUNCTION__, __LINE__)
-#define ASSERT_HINT(expr, hint) detail::AssertImpl((expr), #expr, __FILE__, __FUNCTION__, __LINE__, hint)
+#define ASSERT(expr, stream) detail::AssertImpl((expr), #expr, __FILE__, __FUNCTION__, __LINE__, stream)
+#define ASSERT_HINT(expr, stream, hint) detail::AssertImpl((expr), #expr, __FILE__, __FUNCTION__, __LINE__, hint, stream)
 
 #define RUN_TEST(func, file_in_make, file_in_stats, file_out, file_example) detail::RunTestImpl((func), #func, (file_in), (file_out), (file_example))
 
 void TestOutput(const std::string& file_in_make_base, const std::string& file_in_stats,
-                const std::string& file_out, const std::string& file_example);
-void TestRenderSpeed(const std::string& file_in, const std::string& file_out);
+                const std::string& file_out, const std::string& file_example, std::ostream& stream);
 size_t TestCatalogSpeed(const std::string& file_in_make_base, const std::string& file_out_stats,
-                      const std::string& file_out, const std::string& render_file);
+                      const std::string& file_out, const std::string& render_file, std::ostream& stream);
 void Test(const std::string file_in_make_base, const std::string file_in_stats,
-          const std::string file_out, const std::string file_example, const std::string file_map);
+          const std::string file_out, const std::string file_example, 
+          const std::string file_map, std::ostream& stream);
 }//tests
 }//tr_cat

@@ -1,0 +1,51 @@
+{
+    "serialization_settings": {
+        "file": "transport_catalogue.db"
+    },
+    "stat_requests": [
+        {
+            "id": 572733366,
+            "type": "Bus",
+            "name": "256"
+        },
+        {
+            "id": 623800776,
+            "type": "Stop",
+            "name": "A"
+        },
+        {
+            "id": 746122838,
+            "type": "Stop",
+            "name": "B"
+        },
+        {
+            "id": 437663254,
+            "type": "Stop",
+            "name": "C"
+        },
+        {
+            "id": 1791952954,
+            "type": "Route",
+            "from": "A",
+            "to": "B"
+        },
+        {
+            "id": 1871778652,
+            "type": "Route",
+            "from": "B",
+            "to": "A"
+        },
+        {
+            "id": 1140587205,
+            "type": "Route",
+            "from": "B",
+            "to": "C"
+        },
+        {
+            "id": 1071927763,
+            "type": "Route",
+            "from": "C",
+            "to": "A"
+        }
+    ]
+}

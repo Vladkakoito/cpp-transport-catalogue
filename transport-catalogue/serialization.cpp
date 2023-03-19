@@ -10,7 +10,7 @@ size_t Serializator::Serialize(bool with_graph) const {
     *all_data.mutable_router_data() = transport_router_.Serialize(with_graph);
     std::ofstream out (path_to_serialize_, std::ios::binary | std::ios::trunc);
     all_data.SerializePartialToOstream(&out);
-    return sizeof(path_to_serialize_);
+    return std::filesystem::file_size(path_to_serialize_);
 }
 
 bool Serializator::Deserialize(bool with_graph) {

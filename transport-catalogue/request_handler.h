@@ -35,7 +35,7 @@ public:
     void GetAnswers ();
     virtual void PrintAnswers () = 0;
 //--------------------------------------------serializstion-----------------------------------------------------
-    virtual bool Serialize (bool with_graph) const = 0;
+    virtual size_t Serialize (bool with_graph) const = 0;
     virtual bool Deserialize (bool with_graph) = 0;
 //------------------------------------------------------------------------------------------------------
 

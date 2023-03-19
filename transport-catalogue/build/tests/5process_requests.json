@@ -1,0 +1,63 @@
+{
+    "serialization_settings": {
+        "file": "transport_catalogue.db"
+    },
+    "stat_requests": [
+        {
+            "id": 872035558,
+            "type": "Route",
+            "from": "mUPaFAe3qdv",
+            "to": "e4VumNOSqA8V"
+        },
+        {
+            "id": 1648496757,
+            "type": "Route",
+            "from": "e4VumNOSqA8V",
+            "to": "mUPaFAe3qdv"
+        },
+        {
+            "id": 33304421,
+            "type": "Route",
+            "from": "mUPaFAe3qdv",
+            "to": "mUPaFAe3qdv"
+        },
+        {
+            "id": 976673607,
+            "type": "Stop",
+            "name": "mUPaFAe3qdv"
+        },
+        {
+            "id": 124037756,
+            "type": "Stop",
+            "name": "SnnjuqtQiHAnWzGxZ1q7VH"
+        },
+        {
+            "id": 33304421,
+            "type": "Route",
+            "from": "mUPaFAe3qdv",
+            "to": "mUPaFAe3qdv"
+        },
+        {
+            "id": 872035558,
+            "type": "Route",
+            "from": "mUPaFAe3qdv",
+            "to": "e4VumNOSqA8V"
+        },
+        {
+            "id": 161840669,
+            "type": "Route",
+            "from": "e4VumNOSqA8V",
+            "to": "e4VumNOSqA8V"
+        },
+        {
+            "id": 33304421,
+            "type": "Route",
+            "from": "mUPaFAe3qdv",
+            "to": "mUPaFAe3qdv"
+        },
+        {
+            "id": 1842978724,
+            "type": "Map"
+        }
+    ]
+}

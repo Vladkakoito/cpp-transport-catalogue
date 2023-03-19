@@ -94,7 +94,7 @@ bool TransportRouter::Deserialize(transport_catalog_serialize::Router &router_da
     if (with_graph) {
         std::vector<std::string_view> buses(catalog_.begin(), catalog_.end());
         std::vector<std::string_view> stops = catalog_.GetSortedStopsNames();
-        graph_.SetVertexCount(graph.edges_size());
+        graph_.SetVertexCount(stops.size());
         for (int i = 0; i < graph.edges_size(); ++i) {
             uint32_t edge_id = graph_.AddEdge ({ graph.edges(i).from(),
                                                  graph.edges(i).to(),

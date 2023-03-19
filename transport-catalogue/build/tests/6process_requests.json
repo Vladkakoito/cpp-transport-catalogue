@@ -1,0 +1,63 @@
+{
+    "serialization_settings": {
+        "file": "transport_catalogue.db"
+    },
+    "stat_requests": [
+        {
+            "id": 1525374704,
+            "type": "Stop",
+            "name": "K1Dn3AzxB5H8CgQPV1ipK"
+        },
+        {
+            "id": 1450562908,
+            "type": "Route",
+            "from": "xXOEIem0HLV",
+            "to": "gADL3QDfdmOnYV2hpQia"
+        },
+        {
+            "id": 1007095011,
+            "type": "Route",
+            "from": "2s",
+            "to": "cvy61hwPIlPs93aJONs"
+        },
+        {
+            "id": 1592974285,
+            "type": "Route",
+            "from": "PJ9t",
+            "to": "Ku34L7en6LoLDm"
+        },
+        {
+            "id": 958053930,
+            "type": "Route",
+            "from": "q2K6dEkiEOXxM9ph",
+            "to": "A"
+        },
+        {
+            "id": 2078108726,
+            "type": "Bus",
+            "name": "jKHAQpO7orTDFS6mKggg"
+        },
+        {
+            "id": 588503149,
+            "type": "Route",
+            "from": "K",
+            "to": "2"
+        },
+        {
+            "id": 2006925246,
+            "type": "Route",
+            "from": "FlBDjrQyTKX9Pg",
+            "to": "NgCANVCKr0UFX"
+        },
+        {
+            "id": 557593336,
+            "type": "Route",
+            "from": "nHsbfD",
+            "to": "WB"
+        },
+        {
+            "id": 1842978724,
+            "type": "Map"
+        }
+    ]
+}

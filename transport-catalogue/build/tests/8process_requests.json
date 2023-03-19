@@ -1,0 +1,567 @@
+{
+    "serialization_settings": {
+        "file": "transport_catalogue.db"
+    },
+    "stat_requests": [
+        {
+            "id": 1529463944,
+            "type": "Bus",
+            "name": "em wj8BGeYBS6Ha7T9jfRrR1K"
+        },
+        {
+            "id": 918358636,
+            "type": "Route",
+            "from": "yrqh61IUlzhCmgy",
+            "to": "BCUPJrOHLYO"
+        },
+        {
+            "id": 269664300,
+            "type": "Route",
+            "from": "PgdvLcG5X",
+            "to": "iFLX3G7ngp3JgCXUHYBj9KeE"
+        },
+        {
+            "id": 108308045,
+            "type": "Route",
+            "from": "Y1h87A",
+            "to": "WEFdJ"
+        },
+        {
+            "id": 372093814,
+            "type": "Stop",
+            "name": "ThA7veenBM2iDVyjOV"
+        },
+        {
+            "id": 619560226,
+            "type": "Stop",
+            "name": "LdXW0U5VVPqz4CUpdXeDr"
+        },
+        {
+            "id": 148732108,
+            "type": "Route",
+            "from": "P O0ZdwLm3y20fc1i",
+            "to": "c0rdKp 4fcG"
+        },
+        {
+            "id": 1304203606,
+            "type": "Route",
+            "from": "yrqh61IUlzhCmgy",
+            "to": "kV7U4lP"
+        },
+        {
+            "id": 63036833,
+            "type": "Stop",
+            "name": "x1dam9yjbZV"
+        },
+        {
+            "id": 968455171,
+            "type": "Stop",
+            "name": "kV7U4lP"
+        },
+        {
+            "id": 1725221865,
+            "type": "Route",
+            "from": "8PMd4h8eO52ZRiAf",
+            "to": "8N7ceg3XZCC7D"
+        },
+        {
+            "id": 1075606448,
+            "type": "Bus",
+            "name": "GgWjLCInC"
+        },
+        {
+            "id": 1689030944,
+            "type": "Route",
+            "from": "flmHK9zjtBBilOOwR",
+            "to": "TPF8aq87Q60tnjHvJeqmnu5"
+        },
+        {
+            "id": 1615716446,
+            "type": "Bus",
+            "name": "ikoLwWDZ8b04bzm5spx"
+        },
+        {
+            "id": 1712728040,
+            "type": "Bus",
+            "name": "9AvJ"
+        },
+        {
+            "id": 444297878,
+            "type": "Bus",
+            "name": "ssZ7mdc"
+        },
+        {
+            "id": 244864496,
+            "type": "Bus",
+            "name": "tdjdkXg3B12reKZJO9O3Bwm"
+        },
+        {
+            "id": 428565879,
+            "type": "Route",
+            "from": "1DYiPdSm73RiF",
+            "to": "wDQIVpdWS8Ljj"
+        },
+        {
+            "id": 338928791,
+            "type": "Route",
+            "from": "Jqh9KNdSBOiDnTwtsZ",
+            "to": "F0X5FXrnpoDkYh0cuCw"
+        },
+        {
+            "id": 106571334,
+            "type": "Route",
+            "from": "HRcQaSgNBs5Ff0tX3",
+            "to": "Y6OzdlnOEpkLWd2"
+        },
+        {
+            "id": 395774801,
+            "type": "Route",
+            "from": "p7HOLdc78nEwydi9gslx",
+            "to": "yrqh61IUlzhCmgy"
+        },
+        {
+            "id": 609653166,
+            "type": "Bus",
+            "name": "hfUckqMS"
+        },
+        {
+            "id": 2056464601,
+            "type": "Route",
+            "from": "G",
+            "to": "ThA7veenBM2iDVyjOV"
+        },
+        {
+            "id": 1693856298,
+            "type": "Route",
+            "from": "6FV6qUkHH",
+            "to": "m5Ewh0"
+        },
+        {
+            "id": 398645713,
+            "type": "Stop",
+            "name": "DOoNcs"
+        },
+        {
+            "id": 1626870565,
+            "type": "Route",
+            "from": "q",
+            "to": "DOoNcs"
+        },
+        {
+            "id": 1651571283,
+            "type": "Route",
+            "from": "XCzw0Zr",
+            "to": "DOoNcs"
+        },
+        {
+            "id": 1662382334,
+            "type": "Route",
+            "from": "h4dRAAF9KFKKIu",
+            "to": "Y6OzdlnOEpkLWd2"
+        },
+        {
+            "id": 989659805,
+            "type": "Route",
+            "from": "pCrQfR7dvOEX0n1hqbqr",
+            "to": "Jqh9KNdSBOiDnTwtsZ"
+        },
+        {
+            "id": 669559804,
+            "type": "Route",
+            "from": "UYQjxmLk",
+            "to": "C6YpgNKpcNLYcTLRh5y615Fx"
+        },
+        {
+            "id": 1024123780,
+            "type": "Stop",
+            "name": "7LWFAbJhGh5iSZJcup07P"
+        },
+        {
+            "id": 1407200255,
+            "type": "Route",
+            "from": "1DYiPdSm73RiF",
+            "to": "ThA7veenBM2iDVyjOV"
+        },
+        {
+            "id": 926402739,
+            "type": "Bus",
+            "name": "HNp 8x7aZXYucyo"
+        },
+        {
+            "id": 1460400965,
+            "type": "Route",
+            "from": "X4NLDcD 7785hbS",
+            "to": "IM82e0gwg3u5"
+        },
+        {
+            "id": 1905997717,
+            "type": "Bus",
+            "name": "mjwgSgJ7XLlCo"
+        },
+        {
+            "id": 343534663,
+            "type": "Route",
+            "from": "nE4",
+            "to": "LH9hf8EjyodP"
+        },
+        {
+            "id": 572180816,
+            "type": "Route",
+            "from": "eqxztCvVY Cgdx",
+            "to": "XcFCI7byCPTVcMXsIN6s9fni"
+        },
+        {
+            "id": 1130022033,
+            "type": "Route",
+            "from": "Tyq8ki",
+            "to": "IM82e0gwg3u5"
+        },
+        {
+            "id": 530898395,
+            "type": "Route",
+            "from": "sArW9UJe",
+            "to": "c0rdKp 4fcG"
+        },
+        {
+            "id": 739137451,
+            "type": "Stop",
+            "name": "JCzjrZWj2Y6W0ONCM3"
+        },
+        {
+            "id": 87875599,
+            "type": "Route",
+            "from": "sfBz",
+            "to": "Jqh9KNdSBOiDnTwtsZ"
+        },
+        {
+            "id": 155983327,
+            "type": "Stop",
+            "name": "oHK3Z6vmlUHh"
+        },
+        {
+            "id": 264271260,
+            "type": "Route",
+            "from": "DOoNcs",
+            "to": "kAr0RUBH"
+        },
+        {
+            "id": 860408889,
+            "type": "Route",
+            "from": "pCrQfR7dvOEX0n1hqbqr",
+            "to": "12UwYRxF"
+        },
+        {
+            "id": 1561520123,
+            "type": "Route",
+            "from": "Y6OzdlnOEpkLWd2",
+            "to": "PgdvLcG5X"
+        },
+        {
+            "id": 1944448719,
+            "type": "Route",
+            "from": "iFLX3G7ngp3JgCXUHYBj9KeE",
+            "to": "h4dRAAF9KFKKIu"
+        },
+        {
+            "id": 382195156,
+            "type": "Route",
+            "from": "wNIwrlvOv1tNkBDvMCp",
+            "to": "12UwYRxF"
+        },
+        {
+            "id": 470717033,
+            "type": "Bus",
+            "name": "Ao6ffTeYl YN6TdCp"
+        },
+        {
+            "id": 1301764852,
+            "type": "Bus",
+            "name": "yakWfvyzIiXFROjz76GPDY"
+        },
+        {
+            "id": 1522201844,
+            "type": "Route",
+            "from": "dTxfNqP",
+            "to": "lyoh3s7jI2FQcR3VQkK9"
+        },
+        {
+            "id": 114795154,
+            "type": "Route",
+            "from": "fFlYdGFOZTauI91UKvq yD",
+            "to": "eqxztCvVY Cgdx"
+        },
+        {
+            "id": 1517886728,
+            "type": "Route",
+            "from": "1DYiPdSm73RiF",
+            "to": "8PMd4h8eO52ZRiAf"
+        },
+        {
+            "id": 1958413162,
+            "type": "Bus",
+            "name": "ZibkevpDRF8moQstxWuqa"
+        },
+        {
+            "id": 98878831,
+            "type": "Route",
+            "from": "7oyJ09eHGezpjwGuogm",
+            "to": "xc5BCJ"
+        },
+        {
+            "id": 1922926431,
+            "type": "Bus",
+            "name": "jEE"
+        },
+        {
+            "id": 317937793,
+            "type": "Stop",
+            "name": "JjzkJXikoNx1bxQFS470RXP"
+        },
+        {
+            "id": 1187597268,
+            "type": "Route",
+            "from": "BBnFN0IEf6GT2REpeq4NlQ",
+            "to": "Jqh9KNdSBOiDnTwtsZ"
+        },
+        {
+            "id": 1808669172,
+            "type": "Route",
+            "from": "xc5BCJ",
+            "to": "q"
+        },
+        {
+            "id": 2067729982,
+            "type": "Route",
+            "from": "dTxfNqP",
+            "to": "sArW9UJe"
+        },
+        {
+            "id": 1576252009,
+            "type": "Stop",
+            "name": "8OI1RK8RHK"
+        },
+        {
+            "id": 1453584058,
+            "type": "Route",
+            "from": "LH9hf8EjyodP",
+            "to": "gS0yXkXzsftitLYrb"
+        },
+        {
+            "id": 1298237359,
+            "type": "Route",
+            "from": "yrqh61IUlzhCmgy",
+            "to": "12UwYRxF"
+        },
+        {
+            "id": 334876844,
+            "type": "Bus",
+            "name": "vSy4oCwB7MIdsThc4Gqq"
+        },
+        {
+            "id": 2060099464,
+            "type": "Stop",
+            "name": "dTGx DpQ2324NjOlWY2c1dM"
+        },
+        {
+            "id": 1725618031,
+            "type": "Stop",
+            "name": "Rsw12e"
+        },
+        {
+            "id": 2074696431,
+            "type": "Route",
+            "from": "ncfnzZ5 7BHPIb1",
+            "to": "4XfehjoUXU"
+        },
+        {
+            "id": 1117617751,
+            "type": "Stop",
+            "name": "6foGTSXCos0rtoy"
+        },
+        {
+            "id": 332171407,
+            "type": "Bus",
+            "name": "w2RuKIZvbnM7heZgi"
+        },
+        {
+            "id": 882314499,
+            "type": "Route",
+            "from": "kV7U4lP",
+            "to": "LdXW0U5VVPqz4CUpdXeDr"
+        },
+        {
+            "id": 2044626822,
+            "type": "Route",
+            "from": "85IXX7FB7VGr",
+            "to": "AEsnFm0xd"
+        },
+        {
+            "id": 768177280,
+            "type": "Bus",
+            "name": "R1XgtQgKOjPL nY7l9lf5"
+        },
+        {
+            "id": 1155316832,
+            "type": "Stop",
+            "name": "nE4"
+        },
+        {
+            "id": 893726824,
+            "type": "Route",
+            "from": "r0735in",
+            "to": "3LQgdxmgDvcOS9HogbgwJy"
+        },
+        {
+            "id": 278012884,
+            "type": "Route",
+            "from": "dTxfNqP",
+            "to": "kAr0RUBH"
+        },
+        {
+            "id": 293493527,
+            "type": "Bus",
+            "name": "0mgjJgM8GS1B0x1dtoUD94"
+        },
+        {
+            "id": 1301764852,
+            "type": "Bus",
+            "name": "yakWfvyzIiXFROjz76GPDY"
+        },
+        {
+            "id": 1827847877,
+            "type": "Route",
+            "from": "Y1h87A",
+            "to": "r0735in"
+        },
+        {
+            "id": 110870339,
+            "type": "Bus",
+            "name": "CJQYO 5xcq491AvNxxigUKb"
+        },
+        {
+            "id": 797081473,
+            "type": "Bus",
+            "name": "zvfBVirU15rJ3iztgH"
+        },
+        {
+            "id": 1778443614,
+            "type": "Bus",
+            "name": "Wh69m7kj7AG2Evdtbc"
+        },
+        {
+            "id": 1472059032,
+            "type": "Route",
+            "from": "3LQgdxmgDvcOS9HogbgwJy",
+            "to": "OhccMDvzR9wseCiUryV5"
+        },
+        {
+            "id": 682704875,
+            "type": "Route",
+            "from": "IM82e0gwg3u5",
+            "to": "Rsw12e"
+        },
+        {
+            "id": 72999971,
+            "type": "Bus",
+            "name": "i3Xt9 XFaO B"
+        },
+        {
+            "id": 1991995490,
+            "type": "Route",
+            "from": "M",
+            "to": "kV7U4lP"
+        },
+        {
+            "id": 998706012,
+            "type": "Route",
+            "from": "DOoNcs",
+            "to": "flmHK9zjtBBilOOwR"
+        },
+        {
+            "id": 1336419016,
+            "type": "Route",
+            "from": "DOoNcs",
+            "to": "32"
+        },
+        {
+            "id": 1129788458,
+            "type": "Route",
+            "from": "BCUPJrOHLYO",
+            "to": "x4H"
+        },
+        {
+            "id": 403743616,
+            "type": "Route",
+            "from": "p7HOLdc78nEwydi9gslx",
+            "to": "r0735in"
+        },
+        {
+            "id": 776109910,
+            "type": "Route",
+            "from": "yr3IAeEqfEqwq59y9o15",
+            "to": "85IXX7FB7VGr"
+        },
+        {
+            "id": 1345174572,
+            "type": "Stop",
+            "name": "ncfnzZ5 7BHPIb1"
+        },
+        {
+            "id": 1886439790,
+            "type": "Stop",
+            "name": "Y1h87A"
+        },
+        {
+            "id": 356220515,
+            "type": "Route",
+            "from": "8N7ceg3XZCC7D",
+            "to": "x4H"
+        },
+        {
+            "id": 1207186267,
+            "type": "Route",
+            "from": "wDQIVpdWS8Ljj",
+            "to": "12UwYRxF"
+        },
+        {
+            "id": 44752459,
+            "type": "Route",
+            "from": "Y6OzdlnOEpkLWd2",
+            "to": "kAr0RUBH"
+        },
+        {
+            "id": 494623919,
+            "type": "Route",
+            "from": "yrqh61IUlzhCmgy",
+            "to": "HRcQaSgNBs5Ff0tX3"
+        },
+        {
+            "id": 399517883,
+            "type": "Route",
+            "from": "QewKEt26",
+            "to": "BBnFN0IEf6GT2REpeq4NlQ"
+        },
+        {
+            "id": 1766488230,
+            "type": "Route",
+            "from": "8OI1RK8RHK",
+            "to": "eqxztCvVY Cgdx"
+        },
+        {
+            "id": 1913838999,
+            "type": "Route",
+            "from": "pCrQfR7dvOEX0n1hqbqr",
+            "to": "PgdvLcG5X"
+        },
+        {
+            "id": 881554855,
+            "type": "Route",
+            "from": "BBnFN0IEf6GT2REpeq4NlQ",
+            "to": "47yCy ieILP"
+        },
+        {
+            "id": 1842978724,
+            "type": "Map"
+        }
+    ]
+}

@@ -45,7 +45,7 @@ public:
 
     void ReadDocument () override;
     void ParseDocument () override;
-    bool Serialize(bool with_graph = false) const override {return serializator_.Serialize(with_graph);}
+    size_t Serialize(bool with_graph = false) const override {return serializator_.Serialize(with_graph);}
     bool Deserialize(bool with_graph = false) override {return serializator_.Deserialize(with_graph); }
     void RenderMap(std::ostream& out = std::cout) override {renderer_.Render(out);}
     void CreateGraph() override {transport_router_.CreateGraph();}
