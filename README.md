@@ -15,9 +15,9 @@
 * Запуск с параметром командной строки `process_request` для получения информации по запросам
 * Команды быстрой сборки и демонстрации работы, для систем Linux. (из каталога `build`):
 ```
-        cmake ../
-        cmake --build .
-        ./transport_catalogue
+    cmake ../
+    cmake --build .
+    ./transport_catalogue
 ``` 
    Подробности использования в файле `instructions.json`
 
